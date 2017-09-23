@@ -1,0 +1,58 @@
+package com.vaadin.trippy;
+
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.vaadin.data.provider.Query;
+import com.vaadin.data.provider.QuerySortOrder;
+import com.vaadin.router.Route;
+import com.vaadin.trippy.data.Trip;
+import com.vaadin.trippy.data.TripRepository;
+import com.vaadin.trippy.impl.PageableDataProvider;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.html.Div;
+
+@Route("")
+public class TripList extends Div {
+    @Autowired
+    private TripRepository tripRepository;
+
+    @PostConstruct
+    private void init() {
+        Grid<Trip> grid = new Grid<>();
+        grid.addColumn("Trip", Trip::getData);
+
+        add(createDiv("Trip count: " + tripRepository.count()));
+        grid.setDataProvider(new PageableDataProvider<Trip, Long>() {
+            @Override
+            protected Page<Trip> fetchFromBackEnd(Query<Trip, Long> query,
+                    Pageable pageable) {
+                return tripRepository.findAll(pageable);
+            }
+
+            @Override
+            protected List<QuerySortOrder> getDefaultSortOrders() {
+                return Collections.emptyList();
+            }
+
+            @Override
+            protected int sizeInBackEnd(Query<Trip, Long> query) {
+                return (int) tripRepository.count();
+            }
+        });
+
+        add(grid);
+    }
+
+    private static Div createDiv(String text) {
+        Div div = new Div();
+        div.setText(text);
+        return div;
+    }
+}

@@ -7,7 +7,7 @@ import com.vaadin.ui.common.HtmlImport;
 import com.vaadin.ui.common.StyleSheet;
 import com.vaadin.ui.polymertemplate.PolymerTemplate;
 
-@Route("")
+@Route("hello")
 @HtmlImport("frontend://HelloWorld.html")
 @StyleSheet("context://styles.css")
 @Tag("hello-world")

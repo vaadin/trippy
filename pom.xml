@@ -75,6 +75,17 @@
 
             <dependency>
                 <groupId>org.webjars.bower</groupId>
+                <artifactId>github-com-polymerelements-iron-resizable-behavior</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>github-com-polymerelements-iron-scroll-target-behavior</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
                 <artifactId>github-com-webcomponents-shadycss</artifactId>
                 <version>v1.0.5</version>
             </dependency>
@@ -106,8 +117,23 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>flow</artifactId>
+            <version>${flow.project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-components</artifactId>
             <version>${flow.project.version}</version>
         </dependency>
 
@@ -124,11 +150,42 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Replaces the paper-input dependency from bower.json -->
+        <!-- Webjars stuff that should come transitively -->
         <dependency>
             <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-polymerelements-paper-input</artifactId>
-            <version>2.0.1</version>
+            <artifactId>github-com-vaadin-vaadin-grid</artifactId>
+            <version>v3.0.2</version>
+            <exclusions>
+                <!-- Exclude deps without namespace -->
+                <exclusion>
+                    <groupId>org.webjars.bower</groupId>
+                    <artifactId>iron-a11y-keys-behavior</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bower</groupId>
+                    <artifactId>iron-a11y-announcer</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bower</groupId>
+                    <artifactId>polymer</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Include the same deps with a namespace -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>github-com-polymer-polymer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>github-com-polymerelements-iron-a11y-keys-behavior</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>github-com-polymerelements-iron-a11y-announcer</artifactId>
+            <version>1.0.5</version>
         </dependency>
 
         <!-- Needed for the servlet filter that should really be in Flow 
