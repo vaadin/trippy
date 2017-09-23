@@ -99,10 +99,21 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+        
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>        
             
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>flow</artifactId>
+            <version>${flow.project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-data</artifactId>
             <version>${flow.project.version}</version>
         </dependency>
 
