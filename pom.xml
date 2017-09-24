@@ -42,15 +42,16 @@
 
     </repositories>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
-    </parent>
-
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.3.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Overrides for some stuff that maven defaults cannot cope 
                 with. These should all be inherited from a vaadin-bom. It would be beneficial 
                 to define versions for all packages since maven otherwise needs to download 
