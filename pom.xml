@@ -3,22 +3,27 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.vaadin</groupId>
-    <artifactId>trippy</artifactId>
+    <artifactId>trippy-parent</artifactId>
     <version>1.0.0</version>
     <name>Trippy</name>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Dependencies -->
         <flow.project.version>1.0-SNAPSHOT</flow.project.version>
         <servlet.api.version>3.1.0</servlet.api.version>
     </properties>
+
+    <modules>
+        <module>trippy-backend</module>
+        <module>trippy-starter</module>
+        <module>trippy-ui</module>
+    </modules>
 
     <repositories>
         <repository>
@@ -39,7 +44,6 @@
             <name>bintray</name>
             <url>https://dl.bintray.com/webjars/maven</url>
         </repository>
-
     </repositories>
 
     <dependencyManagement>
@@ -51,160 +55,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-            <!-- Overrides for some stuff that maven defaults cannot cope 
-                with. These should all be inherited from a vaadin-bom. It would be beneficial 
-                to define versions for all packages since maven otherwise needs to download 
-                metadata for all candidates before choosing which one toe actually use. -->
-            <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-polymer-polymer</artifactId>
-                <version>v2.0.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-polymerelements-iron-meta</artifactId>
-                <version>2.0.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-polymerelements-iron-flex-layout</artifactId>
-                <version>2.0.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-polymerelements-iron-resizable-behavior</artifactId>
-                <version>2.0.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-polymerelements-iron-scroll-target-behavior</artifactId>
-                <version>2.0.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-webcomponents-shadycss</artifactId>
-                <version>v1.0.5</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>webcomponentsjs</artifactId>
-                <version>1.0.8</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow</artifactId>
-            <version>${flow.project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-components</artifactId>
-            <version>${flow.project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-data</artifactId>
-            <version>${flow.project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet.api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Webjars stuff that should come transitively -->
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-vaadin-vaadin-grid</artifactId>
-            <version>v3.0.2</version>
-            <exclusions>
-                <!-- Exclude deps without namespace -->
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>iron-a11y-keys-behavior</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>iron-a11y-announcer</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>polymer</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Include the same deps with a namespace -->
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-polymer-polymer</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-polymerelements-iron-a11y-keys-behavior</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-polymerelements-iron-a11y-announcer</artifactId>
-            <version>1.0.5</version>
-        </dependency>
-
-        <!-- Needed for the servlet filter that should really be in Flow 
-            instead -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>webjars-locator-core</artifactId>
-            <version>0.32</version>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

@@ -13,13 +13,11 @@ import org.springframework.boot.context.embedded.EmbeddedWebApplicationContext;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.vaadin.router.Route;
 import com.vaadin.server.InvalidRouteConfigurationException;
 import com.vaadin.server.startup.RouteRegistry;
-import com.vaadin.trippy.TrippyApplication;
 import com.vaadin.ui.Component;
 
 @org.springframework.stereotype.Component
@@ -35,11 +33,7 @@ public class BootWorkarounds implements ServletContextInitializer {
             return;
         }
 
-        RouteRegistry registry = RouteRegistry.getInstance();
-        if (registry.isInitialized()) {
-            // Because the registry isn't cleared when Spring Boot is redploying
-            return;
-        }
+        RouteRegistry registry = RouteRegistry.getInstance(servletContext);
 
         // Explicitly scan for for and register navigation targets since the
         // automatic registration is disabled when running through Boot
@@ -59,8 +53,7 @@ public class BootWorkarounds implements ServletContextInitializer {
         scanner.setResourceLoader(context);
         scanner.addIncludeFilter(new AnnotationTypeFilter(Route.class));
         Set<BeanDefinition> candidateComponents = scanner
-                .findCandidateComponents(
-                        ClassUtils.getPackageName(TrippyApplication.class));
+                .findCandidateComponents("com.vaadin.trippy");
 
         Set<Class<? extends Component>> routeBeans = new HashSet<>();
         for (BeanDefinition candidateComponent : candidateComponents) {
