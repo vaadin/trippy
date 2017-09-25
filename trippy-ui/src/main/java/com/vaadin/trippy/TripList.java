@@ -26,7 +26,9 @@ public class TripList extends Div {
     @PostConstruct
     private void init() {
         Grid<Trip> grid = new Grid<>();
-        grid.addColumn("Trip", Trip::getData);
+        grid.addColumn("Date", Trip::getFormattedDate);
+        grid.addColumn("Length", Trip::getFormattedLength);
+        grid.addColumn("Data", Trip::getData);
 
         add(createDiv("Trip count: " + tripRepository.count()));
         grid.setDataProvider(new PageableDataProvider<Trip, Long>() {
