@@ -19,14 +19,25 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Overrides for some stuff that maven defaults cannot cope 
-                with. These should all be inherited from a vaadin-bom. It would be beneficial 
-                to define versions for all packages since maven otherwise needs to download 
-                metadata for all candidates before choosing which one toe actually use. -->
+            <!-- Explicitly defined versions for all bower dependencies to 
+                avoid surprises down the line. -->
+
+            <!-- In some cases, the v prefix in the version number also makes 
+                Maven unable to pick the right version. Some of the dependencies are defined 
+                twice because of the way WebJars reflect the two different ways of defining 
+                bower dependencies. -->
+
+            <!-- These should all be inherited from a vaadin-bom or similar 
+                instead of being defined here. -->
             <dependency>
                 <groupId>org.webjars.bower</groupId>
                 <artifactId>github-com-polymer-polymer</artifactId>
                 <version>v2.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>polymer</artifactId>
+                <version>2.0.2</version>
             </dependency>
 
             <dependency>
@@ -46,6 +57,7 @@
                 <artifactId>github-com-polymerelements-iron-resizable-behavior</artifactId>
                 <version>2.0.1</version>
             </dependency>
+            
             <dependency>
                 <groupId>org.webjars.bower</groupId>
                 <artifactId>github-com-polymerelements-iron-scroll-target-behavior</artifactId>
@@ -54,13 +66,50 @@
 
             <dependency>
                 <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-vaadin-vaadin-themable-mixin</artifactId>
-                <version>v1.1.2</version>
+                <artifactId>vaadin-themable-mixin</artifactId>
+                <version>1.1.2</version>
             </dependency>
+
             <dependency>
                 <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-vaadin-vaadin-control-state-mixin</artifactId>
-                <version>v1.1.4</version>
+                <artifactId>vaadin-control-state-mixin</artifactId>
+                <version>1.1.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>iron-a11y-keys-behavior</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>iron-a11y-announcer</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>vaadin-checkbox</artifactId>
+                <version>1.0.0-alpha7</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>github-com-vaadin-vaadin-grid</artifactId>
+                <version>v4.0.0-alpha1</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>github-com-polymerelements-iron-icon</artifactId>
+                <version>2.0.1</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>github-com-polymerelements-iron-iconset-svg</artifactId>
+                <version>2.1.0</version>
             </dependency>
 
             <dependency>
@@ -121,90 +170,16 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Webjars stuff that should come transitively -->
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>github-com-vaadin-vaadin-valo-theme</artifactId>
             <version>v0.3.2</version>
         </dependency>
 
-        <!-- Webjars stuff that should come transitively -->
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>github-com-vaadin-vaadin-grid</artifactId>
-            <version>v4.0.0-alpha1</version>
-            <exclusions>
-                <!-- Exclude deps without namespace -->
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>iron-a11y-keys-behavior</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>iron-a11y-announcer</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>vaadin-themable-mixin</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>vaadin-checkbox</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>polymer</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Include the same deps with a namespace -->
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-vaadin-vaadin-themable-mixin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-vaadin-vaadin-control-state-mixin</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>polymer</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-vaadin-vaadin-checkbox</artifactId>
-            <version>v1.0.0-alpha6</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>vaadin-control-state-mixin</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>vaadin-themable-mixin</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.webjars.bower</groupId>
-                    <artifactId>polymer</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-polymer-polymer</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-polymerelements-iron-a11y-keys-behavior</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-polymerelements-iron-a11y-announcer</artifactId>
-            <version>1.0.5</version>
         </dependency>
 
     </dependencies>

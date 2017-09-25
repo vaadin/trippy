@@ -58,12 +58,26 @@ public class WebJarsFilter implements Filter {
                     webJarAndVersion);
 
             if (oldWebJarAndVersion != null) {
-                throw new IllegalStateException(
-                        "There are multiple web jars for the bower module "
-                                + bowerName + ": " + webJarAndVersion + ", "
-                                + oldWebJarAndVersion);
+                String normalizedVersion = normalizeVersion(version);
+                String oldVersion = normalizeVersion(oldWebJarAndVersion
+                        .substring(oldWebJarAndVersion.lastIndexOf('/') + 1));
+
+                if (!normalizedVersion.equals(oldVersion)) {
+                    throw new IllegalStateException(
+                            "There are multiple web jars with different versions for the bower module "
+                                    + bowerName + ": " + webJarAndVersion + ", "
+                                    + oldWebJarAndVersion);
+                }
             }
         });
+    }
+
+    private static String normalizeVersion(String version) {
+        if (version.matches("v\\d+\\.\\d+\\.\\d+(-.*)?")) {
+            return version.substring(1);
+        } else {
+            return version;
+        }
     }
 
     @Override
