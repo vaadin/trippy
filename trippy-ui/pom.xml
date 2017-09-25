@@ -54,6 +54,17 @@
 
             <dependency>
                 <groupId>org.webjars.bower</groupId>
+                <artifactId>github-com-vaadin-vaadin-themable-mixin</artifactId>
+                <version>v1.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>github-com-vaadin-vaadin-control-state-mixin</artifactId>
+                <version>v1.1.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
                 <artifactId>github-com-webcomponents-shadycss</artifactId>
                 <version>v1.0.5</version>
             </dependency>
@@ -110,6 +121,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>github-com-vaadin-vaadin-valo-theme</artifactId>
+            <version>v0.3.2</version>
+        </dependency>
+
         <!-- Webjars stuff that should come transitively -->
         <dependency>
             <groupId>org.webjars.bower</groupId>
@@ -144,12 +161,10 @@
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>github-com-vaadin-vaadin-themable-mixin</artifactId>
-            <version>v1.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>github-com-vaadin-vaadin-control-state-mixin</artifactId>
-            <version>v1.1.4</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.webjars.bower</groupId>
