@@ -14,7 +14,6 @@ import com.vaadin.server.VaadinServiceInitListener;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinServletService;
 import com.vaadin.ui.common.HasElement;
-import com.vaadin.util.ReflectTools;
 
 public class SpringInstantiator implements Instantiator {
 
@@ -38,12 +37,9 @@ public class SpringInstantiator implements Instantiator {
     @Override
     public <T extends HasElement> T createRouteTarget(Class<T> routeTargetType,
             NavigationEvent event) {
-        T instance = ReflectTools.createInstance(routeTargetType);
         AutowireCapableBeanFactory factory = applicationContext
                 .getAutowireCapableBeanFactory();
-        factory.autowireBean(instance);
-        factory.initializeBean(instance, routeTargetType.getName());
-        return instance;
+        return factory.createBean(routeTargetType);
     }
 
 }
