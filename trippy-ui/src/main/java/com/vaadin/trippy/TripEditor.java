@@ -17,7 +17,7 @@ public class TripEditor extends TripForm implements HasUrlParameter<String> {
     public void setParameter(BeforeNavigationEvent event, String parameter) {
         Trip trip = tripRepository.findOne(new Long(parameter));
 
-        edit(trip, () -> tripRepository.save(trip));
+        edit(trip, tripRepository::saveAndFlush);
     }
 
 }

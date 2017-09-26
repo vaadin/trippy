@@ -1,5 +1,7 @@
 package com.vaadin.trippy;
 
+import java.util.function.Consumer;
+
 import com.vaadin.data.Binder;
 import com.vaadin.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.model.TemplateModel;
@@ -22,8 +24,9 @@ public class TripForm extends PolymerTemplate<TemplateModel> {
     private DatePicker datePicker;
     @Id("save")
     private Button saveButton;
+
     private Trip trip;
-    private Runnable saveHandler;
+    private Consumer<Trip> saveHandler;
 
     public TripForm() {
         distanceField.setPreventInvalidInput(true);
@@ -39,7 +42,7 @@ public class TripForm extends PolymerTemplate<TemplateModel> {
 
         saveButton.addClickListener(e -> {
             if (saveHandler != null && binder.writeBeanIfValid(trip)) {
-                saveHandler.run();
+                saveHandler.accept(trip);
             }
         });
 
@@ -47,7 +50,7 @@ public class TripForm extends PolymerTemplate<TemplateModel> {
                 event -> saveButton.setDisabled(event.hasValidationErrors()));
     }
 
-    public void edit(Trip trip, Runnable saveHandler) {
+    public void edit(Trip trip, Consumer<Trip> saveHandler) {
         this.trip = trip;
         this.saveHandler = saveHandler;
 

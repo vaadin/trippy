@@ -20,7 +20,7 @@ public class Trip {
 
     private double length;
 
-    private String data;
+    private String data = "";
 
     public Trip() {
         // Hibernate constructor
