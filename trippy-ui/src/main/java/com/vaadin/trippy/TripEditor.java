@@ -9,9 +9,9 @@ import com.vaadin.router.Route;
 import com.vaadin.router.event.BeforeNavigationEvent;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
+import com.vaadin.ui.button.Button;
 import com.vaadin.ui.datepicker.DatePicker;
 import com.vaadin.ui.html.Div;
-import com.vaadin.ui.html.NativeButton;
 import com.vaadin.ui.textfield.TextField;
 
 @Route("trip")
@@ -35,16 +35,14 @@ public class TripEditor extends Div implements HasUrlParameter<String> {
                 .asRequired("Must enter a number")
                 .bind(Trip::getLength, Trip::setLength);
 
-        NativeButton submitButton = new NativeButton("Save", e -> {
+        Button submitButton = new Button("Save", e -> {
             if (binder.isValid()) {
                 tripRepository.save(binder.getBean());
             }
         });
 
-        binder.addStatusChangeListener(event -> {
-            submitButton.getElement().setAttribute("disabled",
-                    event.hasValidationErrors());
-        });
+        binder.addStatusChangeListener(
+                event -> submitButton.setDisabled(event.hasValidationErrors()));
 
         add(datePicker, distanceField, submitButton);
     }

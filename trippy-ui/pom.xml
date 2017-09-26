@@ -277,6 +277,11 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>vaadin-text-field</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>vaadin-button</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
