@@ -1,22 +1,17 @@
 package com.vaadin.trippy;
 
-import java.util.Collections;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-import com.vaadin.data.provider.Query;
-import com.vaadin.data.provider.QuerySortOrder;
+import com.vaadin.data.provider.DataProvider;
+import com.vaadin.data.provider.SortDirection;
 import com.vaadin.router.NotFoundException;
 import com.vaadin.router.Route;
 import com.vaadin.router.Router;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
-import com.vaadin.trippy.impl.PageableDataProvider;
+import com.vaadin.trippy.impl.SpringDataProviderBuilder;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.html.Div;
@@ -34,23 +29,12 @@ public class TripList extends Div {
         grid.addColumn("Data", Trip::getData);
 
         add(createDiv("Trip count: " + tripRepository.count()));
-        grid.setDataProvider(new PageableDataProvider<Trip, Long>() {
-            @Override
-            protected Page<Trip> fetchFromBackEnd(Query<Trip, Long> query,
-                    Pageable pageable) {
-                return tripRepository.findAll(pageable);
-            }
 
-            @Override
-            protected List<QuerySortOrder> getDefaultSortOrders() {
-                return Collections.emptyList();
-            }
+        DataProvider<Trip, Void> dataProvider = SpringDataProviderBuilder
+                .forRepository(tripRepository)
+                .withDefaultSort("date", SortDirection.DESCENDING).build();
 
-            @Override
-            protected int sizeInBackEnd(Query<Trip, Long> query) {
-                return (int) tripRepository.count();
-            }
-        });
+        grid.setDataProvider(dataProvider);
 
         grid.asSingleSelect().addValueChangeListener(event -> {
             Trip trip = event.getValue();
