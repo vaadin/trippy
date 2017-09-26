@@ -1,1 +1,1 @@
-com.vaadin.trippy.impl.ValoDependencyFilter
+com.vaadin.trippy.impl.TrippyServiceInitListener
