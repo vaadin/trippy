@@ -59,7 +59,8 @@ public class Trip {
     }
 
     public String getFormattedDate() {
-        return date.format(DateTimeFormatter.ISO_DATE);
+        return date
+                .format(DateTimeFormatter.ofPattern("MM/dd/uuuu", Locale.US));
     }
 
     private static NumberFormat createLengthFormat() {
