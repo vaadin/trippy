@@ -12,7 +12,7 @@ import com.vaadin.router.Router;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
 import com.vaadin.trippy.impl.SpringDataProviderBuilder;
-import com.vaadin.ui.Grid;
+import com.vaadin.ui.grid.Grid;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.html.Div;
 
