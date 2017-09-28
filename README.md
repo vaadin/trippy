@@ -1,5 +1,12 @@
 # trippy
 Simple trip planner demo for Flow
 
+Build using
+```
+mvn clean install
+```
 Run using
-```mvn jetty:run```
+```
+cd trippy-ui
+mvn spring-boot:run
+```
