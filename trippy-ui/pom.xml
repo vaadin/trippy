@@ -182,6 +182,18 @@
 
             <dependency>
                 <groupId>org.webjars.bower</groupId>
+                <artifactId>vaadin-ordered-layout</artifactId>
+                <version>1.0.0-alpha1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
+                <artifactId>vaadin-form-layout</artifactId>
+                <version>1.0.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.webjars.bower</groupId>
                 <artifactId>github-com-vaadin-vaadin-grid</artifactId>
                 <version>v4.0.0-alpha1</version>
             </dependency>
@@ -276,6 +288,16 @@
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>vaadin-text-field</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>vaadin-ordered-layout</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>vaadin-form-layout</artifactId>
         </dependency>
 
         <dependency>
