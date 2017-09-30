@@ -15,7 +15,7 @@ import com.vaadin.ui.polymertemplate.PolymerTemplate;
 import com.vaadin.ui.textfield.TextField;
 
 @Tag("trip-form")
-@HtmlImport("frontend://TripForm.html")
+@HtmlImport("TripForm.html")
 public class TripForm extends PolymerTemplate<TemplateModel> {
     private Binder<Trip> binder = new Binder<>();
     @Id("distance")

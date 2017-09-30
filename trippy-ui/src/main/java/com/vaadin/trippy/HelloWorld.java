@@ -8,8 +8,8 @@ import com.vaadin.ui.common.StyleSheet;
 import com.vaadin.ui.polymertemplate.PolymerTemplate;
 
 @Route("hello")
-@HtmlImport("frontend://HelloWorld.html")
-@StyleSheet("context://styles.css")
+@HtmlImport("HelloWorld.html")
+@StyleSheet("../styles.css")
 @Tag("hello-world")
 public class HelloWorld extends PolymerTemplate<TemplateModel> {
 
