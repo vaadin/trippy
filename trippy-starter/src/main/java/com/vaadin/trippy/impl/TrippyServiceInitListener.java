@@ -45,9 +45,9 @@ public class TrippyServiceInitListener implements VaadinServiceInitListener {
                 // Flow sets element properties too late for google-map to get
                 // the right API key. As a temporary workaround, we put our key
                 // in the map's prototype instead.
-                head.appendElement("script").html(
-                        "customElements.whenDefined('google-map').then(function() {customElements.get('google-map').prototype.apiKey = '"
-                                + apiKey + "'})");
+                head.appendElement("script").html("window.mapApiKey = '"
+                        + apiKey + "';\n"
+                        + "customElements.whenDefined('google-map').then(function() {customElements.get('google-map').prototype.apiKey = window.mapApiKey})");
             }
         });
     }

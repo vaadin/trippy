@@ -3,7 +3,6 @@ package com.vaadin.trippy;
 import java.util.function.Consumer;
 
 import com.vaadin.data.Binder;
-import com.vaadin.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.model.TemplateModel;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.ui.Tag;
@@ -18,10 +17,12 @@ import com.vaadin.ui.textfield.TextField;
 @HtmlImport("TripForm.html")
 public class TripForm extends PolymerTemplate<TemplateModel> {
     private Binder<Trip> binder = new Binder<>();
-    @Id("distance")
-    private TextField distanceField;
     @Id("date")
     private DatePicker datePicker;
+    @Id("from")
+    private TextField from;
+    @Id("to")
+    private TextField to;
     @Id("save")
     private Button saveButton;
 
@@ -29,16 +30,10 @@ public class TripForm extends PolymerTemplate<TemplateModel> {
     private Consumer<Trip> saveHandler;
 
     public TripForm() {
-        distanceField.setPreventInvalidInput(true);
-        distanceField.setPattern("[.0-9]*");
-
         binder.forField(datePicker).asRequired("Please select a date")
                 .bind(Trip::getDate, Trip::setDate);
-        binder.forField(distanceField)
-                .withConverter(
-                        new StringToDoubleConverter(0d, "Must enter a number"))
-                .asRequired("Must enter a number")
-                .bind(Trip::getLength, Trip::setLength);
+        binder.forField(from).bind(Trip::getStart, Trip::setStart);
+        binder.forField(to).bind(Trip::getEnd, Trip::setEnd);
 
         saveButton.addClickListener(e -> {
             if (saveHandler != null && binder.writeBeanIfValid(trip)) {

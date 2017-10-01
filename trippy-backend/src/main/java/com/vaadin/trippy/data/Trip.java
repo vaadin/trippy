@@ -1,7 +1,5 @@
 package com.vaadin.trippy.data;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -18,9 +16,9 @@ public class Trip {
 
     private LocalDate date;
 
-    private double length;
+    private String start;
 
-    private String data = "";
+    private String end;
 
     public Trip() {
         // Hibernate constructor
@@ -38,24 +36,20 @@ public class Trip {
         return date;
     }
 
-    public void setLength(double length) {
-        this.length = length;
+    public String getStart() {
+        return start;
     }
 
-    public double getLength() {
-        return length;
+    public void setStart(String start) {
+        this.start = start;
     }
 
-    public String getFormattedLength() {
-        return createLengthFormat().format(length) + " mi";
+    public String getEnd() {
+        return end;
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getData() {
-        return data;
+    public void setEnd(String end) {
+        this.end = end;
     }
 
     public String getFormattedDate() {
@@ -63,10 +57,26 @@ public class Trip {
                 .format(DateTimeFormatter.ofPattern("MM/dd/uuuu", Locale.US));
     }
 
-    private static NumberFormat createLengthFormat() {
-        NumberFormat numberFormat = DecimalFormat.getInstance(Locale.US);
-        numberFormat.setMaximumFractionDigits(1);
-        numberFormat.setMinimumFractionDigits(1);
-        return numberFormat;
+    @Override
+    public int hashCode() {
+        return (int) id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (this.id == 0) {
+            return false;
+        }
+
+        if (obj instanceof Trip) {
+            Trip that = (Trip) obj;
+            return this.id == that.id;
+        } else {
+            return false;
+        }
     }
 }

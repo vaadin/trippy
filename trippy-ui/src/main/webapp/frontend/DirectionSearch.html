@@ -1,0 +1,99 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/google-map/google-map.html">
+<link rel="import" href="bower_components/google-map/google-map-directions.html">
+<link rel="import" href="bower_components/google-map/google-map-search.html">
+
+<dom-module id="direction-search">
+  <template>
+      <style>
+       :host {
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 100%;
+         width: 100%;
+       }
+       google-map {
+         height: 100%;
+         width: 100%;
+       }
+    </style>
+  
+    <google-map map="{{map}}" api-key="[[apiKey]]"></google-map>
+    <google-maps-api
+      api-key="[[apiKey]]"
+      on-api-load="_mapApiLoaded"
+    </google-maps-api>    
+  </template>
+    
+  <script>
+    class DirectionSearch extends Polymer.Element {
+      static get is() {
+        return 'direction-search'
+      }
+	  static get properties() {
+	    return {
+	    	  apiKey: String,
+	    	  start: String,
+	    	  end: String,
+	    	  _ready: Boolean,
+	    	  _updateRequested: Boolean,
+	    	  status: {
+	    		  type: String,
+	    		  value: "UNKNOWN",
+	    		  notify: true
+	    	  }
+	    }
+	  }
+	  static get observers() {
+		  return [
+		    '_query(start, end)'
+		  ]
+		}	  
+	  _mapApiLoaded() {
+		  this.status = "API loaded";
+		  
+		  this._directionsService = new google.maps.DirectionsService();
+		  
+		  this.directionsRenderer = new google.maps.DirectionsRenderer({})
+		  this.directionsRenderer.setMap(this.map);		  
+		  
+		  this._ready = true;
+		  if (this._updateRequested) {
+		    this._query(this.start, this.end);
+		  }
+	  }
+	  _query(start, end) {
+		  if (!this._ready) {
+			  this._updateRequested = true;
+			  return;
+		  }
+		  this._updateRequested = false;
+		  
+		  if (!start || !end) {
+			  // Clear map
+			  return;
+		  }
+		  
+		  this._ready = false;
+		  
+		  this._directionsService.route({origin: start, destination: end, travelMode: "DRIVING"}, (response, status) => {
+			 this._ready = true;
+			 
+			 this.directionsRenderer.setDirections(response);
+			 
+			 this.status = status;
+			 
+			  if (this._updateRequested) {
+				this._query(this.start, this.end);
+			  }
+		  });
+	  }
+	  ready() {
+		  this.apiKey = window.mapApiKey;
+		  super.ready();
+	  }
+    }
+    customElements.define(DirectionSearch.is, DirectionSearch);
+  </script>
+</dom-module>
