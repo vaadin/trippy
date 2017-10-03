@@ -32,15 +32,7 @@ public class DirectionSearch extends Component {
         return directionSearch;
     }
 
-    public void setStart(String start) {
-        getElement().setProperty("start", start);
-    }
-
-    public void setEnd(String end) {
-        getElement().setProperty("end", end);
-    }
-
-    public void setRoute(String start, String end) {
+    public void showRoute(String start, String end) {
         JsonObject properties = Json.createObject();
         properties.put("start", start);
         properties.put("end", end);

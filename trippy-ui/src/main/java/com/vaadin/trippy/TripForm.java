@@ -41,7 +41,7 @@ public class TripForm extends PolymerTemplate<TemplateModel>
                 .bind(Trip::getEnd, Trip::setEnd);
 
         binder.addValueChangeListener(e -> {
-            DirectionSearch.getCurrent().setRoute(from.getValue(),
+            DirectionSearch.getCurrent().showRoute(from.getValue(),
                     to.getValue());
         });
 
