@@ -1,0 +1,15 @@
+html {
+    font-family: sans-serif;
+}
+
+.trip-list {
+	position: absolute;
+	left: 9px;
+	width: 400px;
+	top: 9px;
+	height: 70vh;
+}
+
+.trip-list vaadin-grid {
+	height: 100%;
+}

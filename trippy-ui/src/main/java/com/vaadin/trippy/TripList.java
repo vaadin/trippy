@@ -30,11 +30,11 @@ public class TripList extends Div implements HasUrlParameter<String> {
 
     @PostConstruct
     private void init() {
+        setClassName("trip-list");
+
         grid.addColumn("Date", Trip::getFormattedDate);
         grid.addColumn("From", Trip::getStart);
         grid.addColumn("To", Trip::getEnd);
-
-        add(createDiv("Trip count: " + tripRepository.count()));
 
         DataProvider<Trip, Void> dataProvider = SpringDataProviderBuilder
                 .forRepository(tripRepository)
@@ -64,12 +64,6 @@ public class TripList extends Div implements HasUrlParameter<String> {
         });
 
         add(grid);
-    }
-
-    private static Div createDiv(String text) {
-        Div div = new Div();
-        div.setText(text);
-        return div;
     }
 
     @Override
