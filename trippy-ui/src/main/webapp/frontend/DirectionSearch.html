@@ -76,7 +76,12 @@
 			  // Clear map
 			  return;
 		  }
-		  
+		  this._debouncer = Polymer.Debouncer.debounce(
+				  this._debouncer,
+				  Polymer.Async.timeOut.after(250),
+				  () => this._doQuery(start, end));
+	  }
+      _doQuery(start, end) {
 		  this._ready = false;
 		  
 		  this._directionsService.route({origin: start, destination: end, travelMode: "DRIVING"}, (response, status) => {
