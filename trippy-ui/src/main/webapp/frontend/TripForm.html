@@ -13,11 +13,19 @@
      label {
        margin-right: 5px;
      }
-     vaadin-text-field, vaadin-date-picker {
+     vaadin-text-field, vaadin-date-picker, vaadin-button {
        margin-right: 20px;
      }
+     
      vaadin-text-field {
        width: 250px;
+     }
+     
+     a {
+       text-decoration:none;
+     }
+     a:hover {
+       text-decoration: underline;
      }
     </style>
   
@@ -31,6 +39,8 @@
     <vaadin-date-picker id="date"></vaadin-date-picker>
     
     <vaadin-button id="save">Save</vaadin-button>
+    
+    <a href="/list" router-link>Cancel</a>
   </template>
   <script>
     class TripForm extends Polymer.Element {
