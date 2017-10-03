@@ -48,6 +48,16 @@ public class TrippyServiceInitListener implements VaadinServiceInitListener {
                 head.appendElement("script").html("window.mapApiKey = '"
                         + apiKey + "';\n"
                         + "customElements.whenDefined('google-map').then(function() {customElements.get('google-map').prototype.apiKey = window.mapApiKey})");
+
+                head.appendElement("link").attr("rel", "import").attr("href",
+                        response.getUriResolver().resolveVaadinUri(
+                                "frontend://bower_components/vaadin-valo-theme/typography.html"));
+                head.appendElement("link").attr("rel", "import").attr("href",
+                        response.getUriResolver().resolveVaadinUri(
+                                "frontend://bower_components/vaadin-valo-theme/color.html"));
+
+                head.appendElement("custom-style").appendElement("style")
+                        .attr("include", "valo-typography valo-colors");
             }
         });
     }

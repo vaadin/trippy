@@ -27,12 +27,13 @@ html {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  text-decoration: none;
+  text-decoration: none !important;
   text-align: center;
   background-color: green;
   color: white;
-  font-size: 37px;
-  
+  font-size: 45px;
+  line-height: 40px;
+      
   position: absolute;
   right: 50px;
   bottom: 27px;
