@@ -7,6 +7,7 @@ import com.vaadin.flow.model.TemplateModel;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.ui.Tag;
 import com.vaadin.ui.button.Button;
+import com.vaadin.ui.common.HasStyle;
 import com.vaadin.ui.common.HtmlImport;
 import com.vaadin.ui.datepicker.DatePicker;
 import com.vaadin.ui.polymertemplate.Id;
@@ -15,7 +16,8 @@ import com.vaadin.ui.textfield.TextField;
 
 @Tag("trip-form")
 @HtmlImport("TripForm.html")
-public class TripForm extends PolymerTemplate<TemplateModel> {
+public class TripForm extends PolymerTemplate<TemplateModel>
+        implements HasStyle {
     private Binder<Trip> binder = new Binder<>();
     @Id("date")
     private DatePicker datePicker;

@@ -13,3 +13,9 @@ html {
 .trip-list vaadin-grid {
 	height: 100%;
 }
+
+.add-trip {
+	background: white;
+	position: relative;
+	display: block;
+}

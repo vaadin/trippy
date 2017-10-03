@@ -1,19 +1,36 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
-<link rel="import" href="bower_components/vaadin-ordered-layout/vaadin-vertical-layout.html">
-<link rel="import" href="bower_components/vaadin-form-layout/vaadin-form-layout.html">
 <link rel="import" href="bower_components/vaadin-date-picker/vaadin-date-picker.html">
 <link rel="import" href="bower_components/vaadin-text-field/vaadin-text-field.html">
 
 <dom-module id="trip-form">
   <template>
-    <vaadin-vertical-layout>
-      <vaadin-form-layout style="max-width: 800px">
-        <vaadin-date-picker id="date" label="Day"></vaadin-date-picker>
-        <vaadin-text-field id="from" label="From"></vaadin-text-field>
-        <vaadin-text-field id="to" label="To"></vaadin-text-field>
-      </vaadin-form-layout>
-      <vaadin-button style="margin-right: auto;" id="save">Save</vaadin-button>
-    </vaadin-vertical-layout>
+    <style>
+     :host {
+       text-align: center;
+       padding: 10px;
+     }
+     
+     label {
+       margin-right: 5px;
+     }
+     vaadin-text-field, vaadin-date-picker {
+       margin-right: 20px;
+     }
+     vaadin-text-field {
+       width: 250px;
+     }
+    </style>
+  
+    <label>From</label>
+    <vaadin-text-field id="from"></vaadin-text-field>
+    
+    <label>To</label>
+    <vaadin-text-field id="to"></vaadin-text-field>
+    
+    <label>Day</label>
+    <vaadin-date-picker id="date"></vaadin-date-picker>
+    
+    <vaadin-button id="save">Save</vaadin-button>
   </template>
   <script>
     class TripForm extends Polymer.Element {
