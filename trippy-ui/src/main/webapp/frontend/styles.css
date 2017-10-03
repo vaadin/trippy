@@ -4,18 +4,40 @@ html {
 
 .trip-list {
 	position: absolute;
-	left: 9px;
-	width: 400px;
-	top: 9px;
-	height: 70vh;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .trip-list vaadin-grid {
-	height: 100%;
+	width: 400px;
+	height: 70vh;
+	margin: 9px;
 }
 
 .add-trip {
 	background: white;
 	position: relative;
 	display: block;
+}
+
+.add-link {
+  display: block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  text-decoration: none;
+  text-align: center;
+  background-color: green;
+  color: white;
+  font-size: 37px;
+  
+  position: absolute;
+  right: 50px;
+  bottom: 27px;
+}
+
+.add-link:hover {
+  box-shadow: 0 0 5px black;
 }

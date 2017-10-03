@@ -11,6 +11,7 @@ import com.vaadin.router.OptionalParameter;
 import com.vaadin.router.ParentLayout;
 import com.vaadin.router.Route;
 import com.vaadin.router.Router;
+import com.vaadin.router.RouterLink;
 import com.vaadin.router.event.BeforeNavigationEvent;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
@@ -63,7 +64,10 @@ public class TripList extends Div implements HasUrlParameter<String> {
             ui.navigateTo(url);
         });
 
-        add(grid);
+        RouterLink addLink = new RouterLink("+", AddTrip.class);
+        addLink.setClassName("add-link");
+
+        add(grid, addLink);
     }
 
     @Override
