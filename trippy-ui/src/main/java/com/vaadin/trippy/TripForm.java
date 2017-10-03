@@ -6,6 +6,7 @@ import com.vaadin.data.Binder;
 import com.vaadin.flow.model.TemplateModel;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.ui.Tag;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.button.Button;
 import com.vaadin.ui.common.HasStyle;
 import com.vaadin.ui.common.HtmlImport;
@@ -47,6 +48,12 @@ public class TripForm extends PolymerTemplate<TemplateModel>
         saveButton.addClickListener(e -> {
             if (saveHandler != null && binder.writeBeanIfValid(trip)) {
                 saveHandler.accept(trip);
+
+                UI ui = UI.getCurrent();
+
+                String url = ui.getRouter().get().getUrl(TripList.class,
+                        String.valueOf(trip.getId()));
+                ui.navigateTo(url);
             }
         });
     }
