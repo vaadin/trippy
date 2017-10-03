@@ -39,6 +39,11 @@ public class TripForm extends PolymerTemplate<TemplateModel>
         binder.forField(to).asRequired("Please enter a starting point")
                 .bind(Trip::getEnd, Trip::setEnd);
 
+        binder.addValueChangeListener(e -> {
+            DirectionSearch.getCurrent().setRoute(from.getValue(),
+                    to.getValue());
+        });
+
         saveButton.addClickListener(e -> {
             if (saveHandler != null && binder.writeBeanIfValid(trip)) {
                 saveHandler.accept(trip);
