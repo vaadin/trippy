@@ -6,6 +6,9 @@ import com.vaadin.ui.Tag;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.common.HtmlImport;
 
+import elemental.json.Json;
+import elemental.json.JsonObject;
+
 @HtmlImport("DirectionSearch.html")
 @Tag("direction-search")
 public class DirectionSearch extends Component {
@@ -35,5 +38,12 @@ public class DirectionSearch extends Component {
 
     public void setEnd(String end) {
         getElement().setProperty("end", end);
+    }
+
+    public void setRoute(String start, String end) {
+        JsonObject properties = Json.createObject();
+        properties.put("start", start);
+        properties.put("end", end);
+        getElement().callFunction("setProperties", properties);
     }
 }

@@ -78,8 +78,7 @@ public class TripList extends Div implements HasUrlParameter<String> {
             }
 
             DirectionSearch directionSearch = DirectionSearch.getCurrent();
-            directionSearch.setStart(trip.getStart());
-            directionSearch.setEnd(trip.getEnd());
+            directionSearch.setRoute(trip.getStart(), trip.getEnd());
         }
     }
 }
