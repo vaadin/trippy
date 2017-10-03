@@ -33,9 +33,18 @@ public class DirectionSearch extends Component {
     }
 
     public void showRoute(String start, String end) {
+        showRoute(start, end, false);
+    }
+
+    public void previewRoute(String start, String end) {
+        showRoute(start, end, true);
+    }
+
+    private void showRoute(String start, String end, boolean debounce) {
         JsonObject properties = Json.createObject();
         properties.put("start", start);
         properties.put("end", end);
+        properties.put("debounce", debounce);
         getElement().callFunction("setProperties", properties);
     }
 }
