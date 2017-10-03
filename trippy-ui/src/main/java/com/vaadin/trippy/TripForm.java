@@ -34,17 +34,16 @@ public class TripForm extends PolymerTemplate<TemplateModel>
     public TripForm() {
         binder.forField(datePicker).asRequired("Please select a date")
                 .bind(Trip::getDate, Trip::setDate);
-        binder.forField(from).bind(Trip::getStart, Trip::setStart);
-        binder.forField(to).bind(Trip::getEnd, Trip::setEnd);
+        binder.forField(from).asRequired("Please enter a destination")
+                .bind(Trip::getStart, Trip::setStart);
+        binder.forField(to).asRequired("Please enter a starting point")
+                .bind(Trip::getEnd, Trip::setEnd);
 
         saveButton.addClickListener(e -> {
             if (saveHandler != null && binder.writeBeanIfValid(trip)) {
                 saveHandler.accept(trip);
             }
         });
-
-        binder.addStatusChangeListener(
-                event -> saveButton.setDisabled(event.hasValidationErrors()));
     }
 
     public void edit(Trip trip, Consumer<Trip> saveHandler) {
