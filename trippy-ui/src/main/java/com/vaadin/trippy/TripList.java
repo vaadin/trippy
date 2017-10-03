@@ -8,6 +8,7 @@ import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.SortDirection;
 import com.vaadin.router.HasUrlParameter;
 import com.vaadin.router.OptionalParameter;
+import com.vaadin.router.ParentLayout;
 import com.vaadin.router.Route;
 import com.vaadin.router.Router;
 import com.vaadin.router.event.BeforeNavigationEvent;
@@ -20,11 +21,11 @@ import com.vaadin.ui.html.Div;
 
 // TODO investigate why things seem broken if using @Route("")
 @Route("list")
+@ParentLayout(MainLayout.class)
 public class TripList extends Div implements HasUrlParameter<String> {
     @Autowired
     private TripRepository tripRepository;
 
-    private final DirectionSearch directionSearch = new DirectionSearch();
     private final Grid<Trip> grid = new Grid<>();
 
     @PostConstruct
@@ -62,7 +63,7 @@ public class TripList extends Div implements HasUrlParameter<String> {
             ui.navigateTo(url);
         });
 
-        add(directionSearch, grid);
+        add(grid);
     }
 
     private static Div createDiv(String text) {
@@ -82,6 +83,7 @@ public class TripList extends Div implements HasUrlParameter<String> {
                 grid.asSingleSelect().setValue(trip);
             }
 
+            DirectionSearch directionSearch = DirectionSearch.getCurrent();
             directionSearch.setStart(trip.getStart());
             directionSearch.setEnd(trip.getEnd());
         }
