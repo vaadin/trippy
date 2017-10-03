@@ -20,8 +20,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.grid.Grid;
 import com.vaadin.ui.html.Div;
 
-// TODO investigate why things seem broken if using @Route("")
-@Route("list")
+@Route("")
 @ParentLayout(MainLayout.class)
 public class TripList extends Div implements HasUrlParameter<String> {
     @Autowired
