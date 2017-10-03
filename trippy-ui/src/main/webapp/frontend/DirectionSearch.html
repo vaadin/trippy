@@ -71,6 +71,8 @@
 		  this._updateRequested = false;
 		  
 		  if (!start || !end) {
+			 this.directionsRenderer.setDirections({routes: []});
+
 			  // Clear map
 			  return;
 		  }

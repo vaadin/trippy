@@ -17,6 +17,7 @@ public class AddTrip extends TripForm {
 
     @PostConstruct
     private void init() {
+        DirectionSearch.getCurrent().setRoute("", "");
         setClassName("add-trip");
         edit(new Trip(), tripRepository::saveAndFlush);
     }
