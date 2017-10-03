@@ -42,6 +42,9 @@ public class TripList extends Div implements HasUrlParameter<String> {
         grid.setDataProvider(dataProvider);
 
         grid.asSingleSelect().addValueChangeListener(event -> {
+            if (!event.isFromClient()) {
+                return;
+            }
             Trip trip = event.getValue();
             assert trip != null : "Shouldn't be possible to deselect with current Grid implementation";
 
@@ -75,10 +78,9 @@ public class TripList extends Div implements HasUrlParameter<String> {
             Trip trip = tripRepository.findOne(new Long(tripId));
 
             // TODO Shouldn't be needed to do a dirty check here
-            // TODO Doing a dirty check here should work
-            // if (!trip.equals(grid.asSingleSelect().getValue())) {
-            // grid.asSingleSelect().setValue(trip);
-            // }
+            if (!trip.equals(grid.asSingleSelect().getValue())) {
+                grid.asSingleSelect().setValue(trip);
+            }
 
             directionSearch.setStart(trip.getStart());
             directionSearch.setEnd(trip.getEnd());
