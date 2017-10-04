@@ -45,10 +45,8 @@ public class AddTrip extends PolymerTemplate<TemplateModel>
         binder.forField(from).bind(Trip::getStart, Trip::setStart);
         binder.forField(to).bind(Trip::getEnd, Trip::setEnd);
 
-        binder.addValueChangeListener(e -> {
-            DirectionSearch.getCurrent().previewRoute(from.getValue(),
-                    to.getValue());
-        });
+        binder.addValueChangeListener(e -> DirectionSearch.getCurrent()
+                .previewTrip(from.getValue(), to.getValue()));
 
         saveButton.addClickListener(e -> {
             Trip trip = new Trip();
@@ -62,6 +60,6 @@ public class AddTrip extends PolymerTemplate<TemplateModel>
             }
         });
 
-        DirectionSearch.getCurrent().showRoute("", "");
+        DirectionSearch.getCurrent().showTrip(null);
     }
 }

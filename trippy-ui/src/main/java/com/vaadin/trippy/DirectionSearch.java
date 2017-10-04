@@ -1,6 +1,7 @@
 package com.vaadin.trippy;
 
 import com.vaadin.server.VaadinSession;
+import com.vaadin.trippy.data.Trip;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Tag;
 import com.vaadin.ui.UI;
@@ -32,11 +33,19 @@ public class DirectionSearch extends Component {
         return directionSearch;
     }
 
-    public void showRoute(String start, String end) {
+    public void showTrip(Trip trip) {
+        if (trip == null) {
+            showTrip("", "");
+        } else {
+            showTrip(trip.getStart(), trip.getEnd());
+        }
+    }
+
+    private void showTrip(String start, String end) {
         showRoute(start, end, false);
     }
 
-    public void previewRoute(String start, String end) {
+    public void previewTrip(String start, String end) {
         showRoute(start, end, true);
     }
 

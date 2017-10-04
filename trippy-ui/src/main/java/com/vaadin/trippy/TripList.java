@@ -69,9 +69,9 @@ public class TripList extends Div implements HasUrlParameter<Long> {
             grid.asSingleSelect().setValue(trip);
 
             DirectionSearch directionSearch = DirectionSearch.getCurrent();
-            directionSearch.showRoute(trip.getStart(), trip.getEnd());
+            directionSearch.showTrip(trip);
         } else {
-            DirectionSearch.getCurrent().showRoute("", "");
+            DirectionSearch.getCurrent().showTrip(null);
         }
     }
 }
