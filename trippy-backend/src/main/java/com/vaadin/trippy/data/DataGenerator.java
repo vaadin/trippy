@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DataGenerator {
 
-    private String[] cities = new String[] { "Turku", "Helsinki", "Tampere",
-            "Pori" };
+    private String[] cities = new String[] { "San Francisco", "Oakland",
+            "San Jose", "Mountain View", "Palo Alto" };
 
     @Bean
     public CommandLineRunner loadData(TripRepository tripRepository) {
