@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.SortDirection;
 import com.vaadin.router.HasUrlParameter;
 import com.vaadin.router.OptionalParameter;
@@ -14,45 +13,42 @@ import com.vaadin.router.RouterLink;
 import com.vaadin.router.event.BeforeNavigationEvent;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
-import com.vaadin.trippy.impl.DirectionSearch;
 import com.vaadin.trippy.impl.SpringDataProviderBuilder;
+import com.vaadin.trippy.impl.TripMap;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.common.HasStyle;
 import com.vaadin.ui.grid.Grid;
 import com.vaadin.ui.html.Div;
 
 @Route("")
 @ParentLayout(MainLayout.class)
-public class TripList extends Div implements HasUrlParameter<Long> {
-    @Autowired
-    private TripRepository tripRepository;
+public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
 
-    private final Grid<Trip> grid = new Grid<>();
+    @Autowired
+    private TripRepository repository;
+
+    private Grid<Trip> grid = new Grid<>();
 
     @PostConstruct
-    private void init() {
+    public void init() {
         setClassName("trip-list");
 
         grid.addColumn("Date", Trip::getFormattedDate);
         grid.addColumn("From", Trip::getStart);
         grid.addColumn("To", Trip::getEnd);
 
-        DataProvider<Trip, Void> dataProvider = SpringDataProviderBuilder
-                .forRepository(tripRepository)
-                .withDefaultSort("date", SortDirection.DESCENDING).build();
+        grid.setDataProvider(SpringDataProviderBuilder.forRepository(repository)
+                .withDefaultSort("date", SortDirection.DESCENDING).build());
 
-        grid.setDataProvider(dataProvider);
-
-        grid.asSingleSelect().addValueChangeListener(event -> {
-            if (!event.isFromClient()) {
+        grid.asSingleSelect().addValueChangeListener(e -> {
+            // Work around bug in Flow 1.0 alpha4
+            if (!e.isFromClient()) {
                 return;
             }
-            Trip trip = event.getValue();
 
-            UI ui = UI.getCurrent();
-            String url = ui.getRouter().get().getUrl(TripList.class,
-                    trip.getId());
+            Trip trip = e.getValue();
 
-            ui.navigateTo(url);
+            navigateTo(trip);
         });
 
         RouterLink addLink = new RouterLink("+", AddTrip.class);
@@ -61,17 +57,19 @@ public class TripList extends Div implements HasUrlParameter<Long> {
         add(grid, addLink);
     }
 
+    public static void navigateTo(Trip trip) {
+        UI ui = UI.getCurrent();
+        String url = ui.getRouter().get().getUrl(TripList.class, trip.getId());
+
+        ui.navigateTo(url);
+    }
+
     @Override
     public void setParameter(BeforeNavigationEvent event,
             @OptionalParameter Long tripId) {
-        if (tripId != null) {
-            Trip trip = tripRepository.findOne(tripId);
+        Trip trip = tripId == null ? null : repository.findOne(tripId);
 
-            grid.asSingleSelect().setValue(trip);
-
-            DirectionSearch.getCurrent().showTrip(trip);
-        } else {
-            DirectionSearch.getCurrent().showTrip(null);
-        }
+        grid.asSingleSelect().setValue(trip);
+        TripMap.getCurrent().showTrip(trip);
     }
 }

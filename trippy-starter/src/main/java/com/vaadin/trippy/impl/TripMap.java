@@ -12,22 +12,22 @@ import elemental.json.JsonObject;
 
 @HtmlImport("DirectionSearch.html")
 @Tag("direction-search")
-public class DirectionSearch extends Component {
-    private DirectionSearch() {
+public class TripMap extends Component {
+    public TripMap() {
         // Prevent accidentally constructing without associating with a UI
     }
 
-    public static DirectionSearch getCurrent() {
+    public static TripMap getCurrent() {
         // Fetch from a session attribute as a workaround for not missing UI
         // scope support
         UI ui = UI.getCurrent();
         VaadinSession session = ui.getSession();
 
-        String attributeName = DirectionSearch.class.getName() + ui.getUIId();
-        DirectionSearch directionSearch = (DirectionSearch) session
+        String attributeName = TripMap.class.getName() + ui.getUIId();
+        TripMap directionSearch = (TripMap) session
                 .getAttribute(attributeName);
         if (directionSearch == null) {
-            directionSearch = new DirectionSearch();
+            directionSearch = new TripMap();
             ui.getSession().setAttribute(attributeName, directionSearch);
         }
         return directionSearch;
