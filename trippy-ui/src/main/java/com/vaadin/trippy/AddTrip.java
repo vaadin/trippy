@@ -8,6 +8,7 @@ import com.vaadin.router.ParentLayout;
 import com.vaadin.router.Route;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
+import com.vaadin.trippy.impl.DirectionSearch;
 import com.vaadin.ui.Tag;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.button.Button;

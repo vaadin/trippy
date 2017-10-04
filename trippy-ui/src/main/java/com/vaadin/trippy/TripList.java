@@ -14,6 +14,7 @@ import com.vaadin.router.RouterLink;
 import com.vaadin.router.event.BeforeNavigationEvent;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
+import com.vaadin.trippy.impl.DirectionSearch;
 import com.vaadin.trippy.impl.SpringDataProviderBuilder;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.grid.Grid;
@@ -68,8 +69,7 @@ public class TripList extends Div implements HasUrlParameter<Long> {
 
             grid.asSingleSelect().setValue(trip);
 
-            DirectionSearch directionSearch = DirectionSearch.getCurrent();
-            directionSearch.showTrip(trip);
+            DirectionSearch.getCurrent().showTrip(trip);
         } else {
             DirectionSearch.getCurrent().showTrip(null);
         }

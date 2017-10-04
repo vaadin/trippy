@@ -34,7 +34,12 @@
             <artifactId>flow-data</artifactId>
             <version>${flow.project.version}</version>
         </dependency>
-
+        
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>trippy-backend</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

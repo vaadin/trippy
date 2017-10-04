@@ -1,6 +1,7 @@
 package com.vaadin.trippy;
 
 import com.vaadin.router.RouterLayout;
+import com.vaadin.trippy.impl.DirectionSearch;
 import com.vaadin.ui.common.StyleSheet;
 import com.vaadin.ui.html.Div;
 

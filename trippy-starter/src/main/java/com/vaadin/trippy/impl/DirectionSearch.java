@@ -1,4 +1,4 @@
-package com.vaadin.trippy;
+package com.vaadin.trippy.impl;
 
 import com.vaadin.server.VaadinSession;
 import com.vaadin.trippy.data.Trip;
