@@ -52,11 +52,7 @@ public class TripForm extends PolymerTemplate<TemplateModel>
                 UI ui = UI.getCurrent();
 
                 String url = ui.getRouter().get().getUrl(TripList.class,
-                        String.valueOf(trip.getId()));
-                // https://github.com/vaadin/flow/issues/2562
-                if (url.startsWith("/")) {
-                    url = url.substring(1);
-                }
+                        trip.getId());
                 ui.navigateTo(url);
             }
         });

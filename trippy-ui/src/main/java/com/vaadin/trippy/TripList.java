@@ -10,7 +10,6 @@ import com.vaadin.router.HasUrlParameter;
 import com.vaadin.router.OptionalParameter;
 import com.vaadin.router.ParentLayout;
 import com.vaadin.router.Route;
-import com.vaadin.router.Router;
 import com.vaadin.router.RouterLink;
 import com.vaadin.router.event.BeforeNavigationEvent;
 import com.vaadin.trippy.data.Trip;
@@ -22,7 +21,7 @@ import com.vaadin.ui.html.Div;
 
 @Route("")
 @ParentLayout(MainLayout.class)
-public class TripList extends Div implements HasUrlParameter<String> {
+public class TripList extends Div implements HasUrlParameter<Long> {
     @Autowired
     private TripRepository tripRepository;
 
@@ -47,18 +46,10 @@ public class TripList extends Div implements HasUrlParameter<String> {
                 return;
             }
             Trip trip = event.getValue();
-            assert trip != null : "Shouldn't be possible to deselect with current Grid implementation";
 
             UI ui = UI.getCurrent();
-            Router router = ui.getRouter().get();
-
-            String url = router.getUrl(TripList.class,
-                    String.valueOf(trip.getId()));
-
-            // https://github.com/vaadin/flow/issues/2562
-            if (url.startsWith("/")) {
-                url = url.substring(1);
-            }
+            String url = ui.getRouter().get().getUrl(TripList.class,
+                    trip.getId());
 
             ui.navigateTo(url);
         });
@@ -71,14 +62,11 @@ public class TripList extends Div implements HasUrlParameter<String> {
 
     @Override
     public void setParameter(BeforeNavigationEvent event,
-            @OptionalParameter String tripId) {
+            @OptionalParameter Long tripId) {
         if (tripId != null) {
-            Trip trip = tripRepository.findOne(new Long(tripId));
+            Trip trip = tripRepository.findOne(tripId);
 
-            // TODO Shouldn't be needed to do a dirty check here
-            if (!trip.equals(grid.asSingleSelect().getValue())) {
-                grid.asSingleSelect().setValue(trip);
-            }
+            grid.asSingleSelect().setValue(trip);
 
             DirectionSearch directionSearch = DirectionSearch.getCurrent();
             directionSearch.showRoute(trip.getStart(), trip.getEnd());
