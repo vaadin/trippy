@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.vaadin.data.provider.SortDirection;
 import com.vaadin.router.HasUrlParameter;
 import com.vaadin.router.OptionalParameter;
-import com.vaadin.router.ParentLayout;
 import com.vaadin.router.Route;
 import com.vaadin.router.RouterLink;
 import com.vaadin.router.event.BeforeNavigationEvent;
@@ -20,8 +19,7 @@ import com.vaadin.ui.common.HasStyle;
 import com.vaadin.ui.grid.Grid;
 import com.vaadin.ui.html.Div;
 
-@Route("")
-@ParentLayout(MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
 
     @Autowired

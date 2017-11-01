@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Dependencies -->
-        <flow.project.version>1.0.0.alpha4</flow.project.version>
+        <vaadin.platform.version>10.0.0-alpha5</vaadin.platform.version>
         <servlet.api.version>3.1.0</servlet.api.version>
     </properties>
 
@@ -52,6 +52,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>1.5.3.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.data.Binder;
 import com.vaadin.flow.model.TemplateModel;
-import com.vaadin.router.ParentLayout;
 import com.vaadin.router.Route;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
@@ -22,8 +21,7 @@ import com.vaadin.ui.textfield.TextField;
 
 @Tag("trip-form")
 @HtmlImport("TripForm.html")
-@Route("add")
-@ParentLayout(MainLayout.class)
+@Route(value = "add", layout = MainLayout.class)
 public class AddTrip extends PolymerTemplate<TemplateModel>
         implements HasStyle {
     @Autowired
