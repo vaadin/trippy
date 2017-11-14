@@ -49,25 +49,13 @@
 
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>flow-server</artifactId>
+            <artifactId>vaadin</artifactId>
+            <version>${vaadin.platform.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>flow-spring-boot-starter</artifactId>
-            <!-- Hardcoded version since this is missing from the BOM for 
-                platform alpha5 -->
-            <version>1.0.0.alpha7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-components</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>flow-data</artifactId>
         </dependency>
 
         <dependency>
