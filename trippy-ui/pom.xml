@@ -76,6 +76,13 @@
             <artifactId>github-com-GoogleWebComponents-google-map</artifactId>
             <version>2.0.2</version>
         </dependency>
+
+        <!-- Use newer date-picker with fix for Chrome 62+ -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>vaadin-date-picker</artifactId>
+            <version>2.0.7</version>
+        </dependency>
     </dependencies>
 
     <build>
