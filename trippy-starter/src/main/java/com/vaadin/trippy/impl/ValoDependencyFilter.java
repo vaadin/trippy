@@ -14,12 +14,12 @@ import com.vaadin.shared.ui.LoadMode;
 public class ValoDependencyFilter implements DependencyFilter {
 
     // Workaround definitions not imported by e.g. the Grid theme
-    private static final Dependency SIZING_AND_SPACING = new Dependency(
-            Type.HTML_IMPORT,
-            "bower_components/vaadin-valo-theme/sizing-and-spacing.html",
-            LoadMode.EAGER);
+    private static final Dependency SIZING = new Dependency(Type.HTML_IMPORT,
+            "bower_components/vaadin-valo-theme/sizing.html", LoadMode.EAGER);
+    private static final Dependency SPACING = new Dependency(Type.HTML_IMPORT,
+            "bower_components/vaadin-valo-theme/spacing.html", LoadMode.EAGER);
 
-    private static final String VALO_WEBJAR = "github-com-vaadin-vaadin-valo-theme";
+    private static final String VALO_WEBJAR = "vaadin-valo-theme";
 
     private final WebJarAssetLocator locator = new WebJarAssetLocator();
 
@@ -37,7 +37,7 @@ public class ValoDependencyFilter implements DependencyFilter {
     private Stream<Dependency> expandThemeDependency(Dependency dependency) {
         Dependency themeDependency = getThemeDependency(dependency);
         if (themeDependency != null) {
-            return Stream.of(themeDependency, dependency, SIZING_AND_SPACING);
+            return Stream.of(themeDependency, dependency, SIZING, SPACING);
         } else {
             return Stream.of(dependency);
         }

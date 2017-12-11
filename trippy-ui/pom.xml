@@ -19,7 +19,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Explicitly defined versions for all third party bower dependencies 
+            <!-- Explicitly defined versions for all third party bower dependencies
                 to avoid surprises down the line. -->
             <dependency>
                 <groupId>org.webjars.bower</groupId>
@@ -69,12 +69,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${servlet.api.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-vaadin-vaadin-valo-theme</artifactId>
-            <version>v2.0.0-alpha4</version>
         </dependency>
 
         <dependency>

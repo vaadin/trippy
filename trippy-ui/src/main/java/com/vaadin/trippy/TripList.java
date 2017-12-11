@@ -16,10 +16,13 @@ import com.vaadin.trippy.impl.SpringDataProviderBuilder;
 import com.vaadin.trippy.impl.TripMap;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.common.HasStyle;
+import com.vaadin.ui.common.HtmlImport;
 import com.vaadin.ui.grid.Grid;
 import com.vaadin.ui.html.Div;
 
 @Route(value = "", layout = MainLayout.class)
+// Workaround for incompatibility in 1.0.0.alpha3 of vaadin-grid-flow
+@HtmlImport("bower_components/vaadin-grid/vaadin-grid.html")
 public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
 
     @Autowired
@@ -31,9 +34,9 @@ public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
     public void init() {
         setClassName("trip-list");
 
-        grid.addColumn("Date", Trip::getFormattedDate);
-        grid.addColumn("From", Trip::getStart);
-        grid.addColumn("To", Trip::getEnd);
+        grid.addColumn(Trip::getFormattedDate, "Date");
+        grid.addColumn(Trip::getStart, "From");
+        grid.addColumn(Trip::getEnd, "To");
 
         grid.setDataProvider(SpringDataProviderBuilder.forRepository(repository)
                 .withDefaultSort("date", SortDirection.DESCENDING).build());
@@ -65,7 +68,8 @@ public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
     @Override
     public void setParameter(BeforeNavigationEvent event,
             @OptionalParameter Long tripId) {
-        Trip trip = tripId == null ? null : repository.findOne(tripId);
+        Trip trip = tripId == null ? null
+                : repository.findById(tripId).orElse(null);
 
         grid.asSingleSelect().setValue(trip);
         TripMap.getCurrent().showTrip(trip);
