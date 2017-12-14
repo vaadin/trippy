@@ -42,11 +42,6 @@ public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
                 .withDefaultSort("date", SortDirection.DESCENDING).build());
 
         grid.asSingleSelect().addValueChangeListener(e -> {
-            // Work around bug in Flow 1.0 alpha4
-            if (!e.isFromClient()) {
-                return;
-            }
-
             Trip trip = e.getValue();
 
             navigateTo(trip);
