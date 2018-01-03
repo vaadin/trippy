@@ -1,11 +1,11 @@
 package com.vaadin.trippy.impl;
 
-import com.vaadin.server.VaadinSession;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.trippy.data.Trip;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.Tag;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.common.HtmlImport;
 
 import elemental.json.Json;
 import elemental.json.JsonObject;
@@ -24,8 +24,7 @@ public class TripMap extends Component {
         VaadinSession session = ui.getSession();
 
         String attributeName = TripMap.class.getName() + ui.getUIId();
-        TripMap directionSearch = (TripMap) session
-                .getAttribute(attributeName);
+        TripMap directionSearch = (TripMap) session.getAttribute(attributeName);
         if (directionSearch == null) {
             directionSearch = new TripMap();
             ui.getSession().setAttribute(attributeName, directionSearch);

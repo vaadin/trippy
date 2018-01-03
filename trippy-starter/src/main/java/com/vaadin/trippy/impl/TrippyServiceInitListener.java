@@ -4,11 +4,11 @@ import org.jsoup.nodes.Element;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.vaadin.server.BootstrapListener;
-import com.vaadin.server.BootstrapPageResponse;
-import com.vaadin.server.ServiceInitEvent;
-import com.vaadin.server.VaadinServiceInitListener;
-import com.vaadin.server.VaadinServletService;
+import com.vaadin.flow.server.BootstrapListener;
+import com.vaadin.flow.server.BootstrapPageResponse;
+import com.vaadin.flow.server.ServiceInitEvent;
+import com.vaadin.flow.server.VaadinServiceInitListener;
+import com.vaadin.flow.server.VaadinServletService;
 
 /**
  * Various hacks that should really be features in Flow instead

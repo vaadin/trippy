@@ -1,9 +1,9 @@
 package com.vaadin.trippy;
 
-import com.vaadin.router.RouterLayout;
+import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.trippy.impl.TripMap;
-import com.vaadin.ui.common.StyleSheet;
-import com.vaadin.ui.html.Div;
 
 @StyleSheet("styles.css")
 public class MainLayout extends Div implements RouterLayout {

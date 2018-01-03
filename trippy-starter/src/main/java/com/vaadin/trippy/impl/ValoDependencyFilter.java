@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 import org.webjars.WebJarAssetLocator;
 
-import com.vaadin.server.DependencyFilter;
-import com.vaadin.shared.ui.Dependency;
-import com.vaadin.shared.ui.Dependency.Type;
-import com.vaadin.shared.ui.LoadMode;
+import com.vaadin.flow.server.DependencyFilter;
+import com.vaadin.flow.shared.ui.Dependency;
+import com.vaadin.flow.shared.ui.Dependency.Type;
+import com.vaadin.flow.shared.ui.LoadMode;
 
 public class ValoDependencyFilter implements DependencyFilter {
 

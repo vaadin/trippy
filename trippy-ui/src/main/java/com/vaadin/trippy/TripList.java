@@ -4,21 +4,22 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.vaadin.data.provider.SortDirection;
-import com.vaadin.router.HasUrlParameter;
-import com.vaadin.router.OptionalParameter;
-import com.vaadin.router.Route;
-import com.vaadin.router.RouterLink;
-import com.vaadin.router.event.BeforeNavigationEvent;
+import com.vaadin.flow.component.HasStyle;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.data.provider.SortDirection;
+import com.vaadin.flow.router.BeforeNavigationEvent;
+import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.OptionalParameter;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.Router;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
 import com.vaadin.trippy.impl.SpringDataProviderBuilder;
 import com.vaadin.trippy.impl.TripMap;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.common.HasStyle;
-import com.vaadin.ui.common.HtmlImport;
-import com.vaadin.ui.grid.Grid;
-import com.vaadin.ui.html.Div;
 
 @Route(value = "", layout = MainLayout.class)
 // Workaround for incompatibility in 1.0.0.alpha3 of vaadin-grid-flow

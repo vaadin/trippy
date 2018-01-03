@@ -4,20 +4,20 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.vaadin.data.Binder;
-import com.vaadin.flow.model.TemplateModel;
-import com.vaadin.router.Route;
+import com.vaadin.flow.component.HasStyle;
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
 import com.vaadin.trippy.impl.TripMap;
-import com.vaadin.ui.Tag;
-import com.vaadin.ui.button.Button;
-import com.vaadin.ui.common.HasStyle;
-import com.vaadin.ui.common.HtmlImport;
-import com.vaadin.ui.datepicker.DatePicker;
-import com.vaadin.ui.polymertemplate.Id;
-import com.vaadin.ui.polymertemplate.PolymerTemplate;
-import com.vaadin.ui.textfield.TextField;
 
 @Tag("trip-form")
 @HtmlImport("TripForm.html")
