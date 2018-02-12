@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.data.provider.SortDirection;
-import com.vaadin.flow.router.BeforeNavigationEvent;
+import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.Router;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.trippy.data.Trip;
 import com.vaadin.trippy.data.TripRepository;
@@ -22,8 +20,6 @@ import com.vaadin.trippy.impl.SpringDataProviderBuilder;
 import com.vaadin.trippy.impl.TripMap;
 
 @Route(value = "", layout = MainLayout.class)
-// Workaround for incompatibility in 1.0.0.alpha3 of vaadin-grid-flow
-@HtmlImport("bower_components/vaadin-grid/vaadin-grid.html")
 public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
 
     @Autowired
@@ -56,13 +52,14 @@ public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
 
     public static void navigateTo(Trip trip) {
         UI ui = UI.getCurrent();
-        String url = ui.getRouter().get().getUrl(TripList.class, trip.getId());
+        Long tripId = trip != null ? trip.getId() : null;
+        String url = ui.getRouter().get().getUrl(TripList.class, tripId);
 
         ui.navigateTo(url);
     }
 
     @Override
-    public void setParameter(BeforeNavigationEvent event,
+    public void setParameter(BeforeEvent event,
             @OptionalParameter Long tripId) {
         Trip trip = tripId == null ? null
                 : repository.findById(tripId).orElse(null);

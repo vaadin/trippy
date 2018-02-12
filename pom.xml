@@ -15,7 +15,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Dependencies -->
-        <vaadin.platform.version>10.0.0.alpha11</vaadin.platform.version>
+        <vaadin.platform.version>10.0.0.alpha17</vaadin.platform.version>
+        <spring.boot.version>2.0.0.RC1</spring.boot.version>
         <servlet.api.version>3.1.0</servlet.api.version>
     </properties>
 
@@ -50,10 +51,10 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
+             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.0.0.M7</version>
+                <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

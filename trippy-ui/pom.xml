@@ -22,15 +22,21 @@
             <!-- Explicitly defined versions for all third party bower dependencies
                 to avoid surprises down the line. -->
             <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-polymerelements-iron-jsonp-library</artifactId>
+                <groupId>org.webjars.bowergithub.polymerelements</groupId>
+                <artifactId>iron-jsonp-library</artifactId>
                 <version>2.0.0</version>
             </dependency>
+            
+            <dependency>
+                <groupId>org.webjars.bowergithub.polymerelements</groupId>
+                <artifactId>iron-selector</artifactId>
+                <version>2.0.1</version>
+            </dependency>            
 
             <dependency>
-                <groupId>org.webjars.bower</groupId>
-                <artifactId>github-com-googlewebcomponents-google-apis</artifactId>
-                <version>2.0.0</version>
+                <groupId>org.webjars.bowergithub.googlewebcomponents</groupId>
+                <artifactId>google-apis</artifactId>
+                <version>2.0.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -50,7 +56,6 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin</artifactId>
-            <version>${vaadin.platform.version}</version>
         </dependency>
 
         <dependency>
@@ -67,21 +72,13 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet.api.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>github-com-GoogleWebComponents-google-map</artifactId>
-            <version>2.0.2</version>
-        </dependency>
-
-        <!-- Use newer date-picker with fix for Chrome 62+ -->
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>vaadin-date-picker</artifactId>
-            <version>2.0.7</version>
+            <groupId>org.webjars.bowergithub.googlewebcomponents</groupId>
+            <artifactId>google-map</artifactId>
+            <version>2.0.3</version>
         </dependency>
     </dependencies>
 
