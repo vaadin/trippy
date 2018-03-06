@@ -15,8 +15,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Dependencies -->
-        <vaadin.platform.version>10.0.0.alpha17</vaadin.platform.version>
-        <spring.boot.version>2.0.0.RC1</spring.boot.version>
+        <vaadin.platform.version>10.0.0.beta1</vaadin.platform.version>
+        <spring.boot.version>2.0.0.RELEASE</spring.boot.version>
         <servlet.api.version>3.1.0</servlet.api.version>
     </properties>
 
@@ -33,19 +33,8 @@
         </repository>
 
         <repository>
-            <id>springio-milestone</id>
-            <url>http://repo.spring.io/milestone/</url>
-        </repository>
-
-        <repository>
             <id>vaadin-addons</id>
             <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-
-        <repository>
-            <id>bintray-webjars-maven</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/webjars/maven</url>
         </repository>
     </repositories>
 

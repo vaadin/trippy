@@ -55,7 +55,7 @@ public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
         Long tripId = trip != null ? trip.getId() : null;
         String url = ui.getRouter().get().getUrl(TripList.class, tripId);
 
-        ui.navigateTo(url);
+        ui.navigate(url);
     }
 
     @Override
