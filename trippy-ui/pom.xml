@@ -19,19 +19,19 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Explicitly defined versions for all third party bower dependencies
+            <!-- Explicitly defined versions for all third party bower dependencies 
                 to avoid surprises down the line. -->
             <dependency>
                 <groupId>org.webjars.bowergithub.polymerelements</groupId>
                 <artifactId>iron-jsonp-library</artifactId>
                 <version>2.0.0</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.webjars.bowergithub.polymerelements</groupId>
                 <artifactId>iron-selector</artifactId>
                 <version>2.0.1</version>
-            </dependency>            
+            </dependency>
 
             <dependency>
                 <groupId>org.webjars.bowergithub.googlewebcomponents</groupId>
