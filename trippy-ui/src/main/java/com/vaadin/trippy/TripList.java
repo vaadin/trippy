@@ -1,7 +1,5 @@
 package com.vaadin.trippy;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.flow.component.HasStyle;
@@ -22,13 +20,13 @@ import com.vaadin.trippy.impl.TripMap;
 @Route(value = "", layout = MainLayout.class)
 public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
 
-    @Autowired
-    private TripRepository repository;
+    private final TripRepository repository;
 
     private Grid<Trip> grid = new Grid<>();
 
-    @PostConstruct
-    public void init() {
+    public TripList(@Autowired TripRepository repository) {
+        this.repository = repository;
+
         setClassName("trip-list");
 
         grid.addColumn(Trip::getFormattedDate, "Date");
@@ -51,11 +49,9 @@ public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
     }
 
     public static void navigateTo(Trip trip) {
-        UI ui = UI.getCurrent();
         Long tripId = trip != null ? trip.getId() : null;
-        String url = ui.getRouter().get().getUrl(TripList.class, tripId);
 
-        ui.navigate(url);
+        UI.getCurrent().navigate(TripList.class, tripId);
     }
 
     @Override

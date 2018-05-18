@@ -1,7 +1,5 @@
 package com.vaadin.trippy;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.flow.component.HasStyle;
@@ -24,8 +22,6 @@ import com.vaadin.trippy.impl.TripMap;
 @Route(value = "add", layout = MainLayout.class)
 public class AddTrip extends PolymerTemplate<TemplateModel>
         implements HasStyle {
-    @Autowired
-    TripRepository repository;
 
     @Id("from")
     TextField from;
@@ -36,8 +32,7 @@ public class AddTrip extends PolymerTemplate<TemplateModel>
     @Id("save")
     Button saveButton;
 
-    @PostConstruct
-    private void init() {
+    public AddTrip(@Autowired TripRepository repository) {
         addClassName("add-trip");
 
         Binder<Trip> binder = new Binder<>();
