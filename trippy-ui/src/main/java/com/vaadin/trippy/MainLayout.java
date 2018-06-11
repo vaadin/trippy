@@ -1,5 +1,7 @@
 package com.vaadin.trippy;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.page.Viewport;
@@ -12,7 +14,7 @@ import com.vaadin.trippy.impl.TripMap;
 @Theme(Lumo.class)
 @Viewport("width=device-width, initial-scale=1")
 public class MainLayout extends Div implements RouterLayout {
-    public MainLayout() {
-        add(TripMap.getCurrent());
+    public MainLayout(@Autowired TripMap tripMap) {
+        add(tripMap);
     }
 }

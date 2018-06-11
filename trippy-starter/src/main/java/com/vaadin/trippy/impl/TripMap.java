@@ -1,10 +1,12 @@
 package com.vaadin.trippy.impl;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.server.VaadinSession;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 import com.vaadin.trippy.data.Trip;
 
 import elemental.json.Json;
@@ -12,24 +14,16 @@ import elemental.json.JsonObject;
 
 @HtmlImport("DirectionSearch.html")
 @Tag("direction-search")
+@UIScope
+@SpringComponent
 public class TripMap extends Component {
-    public TripMap() {
-        // Prevent accidentally constructing without associating with a UI
-    }
-
-    public static TripMap getCurrent() {
-        // Fetch from a session attribute as a workaround for not missing UI
-        // scope support
-        UI ui = UI.getCurrent();
-        VaadinSession session = ui.getSession();
-
-        String attributeName = TripMap.class.getName() + ui.getUIId();
-        TripMap directionSearch = (TripMap) session.getAttribute(attributeName);
-        if (directionSearch == null) {
-            directionSearch = new TripMap();
-            ui.getSession().setAttribute(attributeName, directionSearch);
+    public TripMap(@Value("${map.apikey:}") String apiKey) {
+        if (apiKey.isEmpty()) {
+            throw new RuntimeException(
+                    "Configure a map.apikey in your application.properties");
         }
-        return directionSearch;
+
+        getElement().setProperty("apiKey", apiKey);
     }
 
     public void showTrip(Trip trip) {

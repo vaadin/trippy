@@ -21,11 +21,14 @@ import com.vaadin.trippy.impl.TripMap;
 public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
 
     private final TripRepository repository;
+    private final TripMap tripMap;
 
     private Grid<Trip> grid = new Grid<>();
 
-    public TripList(@Autowired TripRepository repository) {
+    public TripList(@Autowired TripRepository repository,
+            @Autowired TripMap tripMap) {
         this.repository = repository;
+        this.tripMap = tripMap;
 
         setClassName("trip-list");
 
@@ -61,6 +64,6 @@ public class TripList extends Div implements HasStyle, HasUrlParameter<Long> {
                 : repository.findById(tripId).orElse(null);
 
         grid.asSingleSelect().setValue(trip);
-        TripMap.getCurrent().showTrip(trip);
+        tripMap.showTrip(trip);
     }
 }

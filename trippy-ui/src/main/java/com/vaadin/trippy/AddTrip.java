@@ -32,7 +32,8 @@ public class AddTrip extends PolymerTemplate<TemplateModel>
     @Id("save")
     Button saveButton;
 
-    public AddTrip(@Autowired TripRepository repository) {
+    public AddTrip(@Autowired TripRepository repository,
+            @Autowired TripMap tripMap) {
         addClassName("add-trip");
 
         Binder<Trip> binder = new Binder<>();
@@ -50,9 +51,9 @@ public class AddTrip extends PolymerTemplate<TemplateModel>
             }
         });
 
-        TripMap.getCurrent().showTrip(null);
+        tripMap.showTrip(null);
 
-        binder.addValueChangeListener(e -> TripMap.getCurrent()
-                .previewTrip(from.getValue(), to.getValue()));
+        binder.addValueChangeListener(
+                e -> tripMap.previewTrip(from.getValue(), to.getValue()));
     }
 }
